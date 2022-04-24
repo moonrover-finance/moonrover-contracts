@@ -1469,7 +1469,7 @@ contract RovrFarm is Ownable, ReentrancyGuard {
         // Assume that the liquidity is ROVR-MOVR
         // Remove liquidity first
         uint256 balanceBefore = IERC20(_token).balanceOf(address(this));
-        IERC20(_lpToken).safeApprove(address(swapRouter), _lpAmount);
+        IERC20(_lpToken).approve(address(swapRouter), _lpAmount);
         try
             swapRouter.removeLiquidityETHSupportingFeeOnTransferTokens(
                 _token,
@@ -1686,7 +1686,7 @@ contract RovrFarm is Ownable, ReentrancyGuard {
             }
             // 90% is vested for 90 days
             if (_amount > directHarvestAmount) {
-                rovrToken.safeApprove(
+                rovrToken.approve(
                     address(vestingContract),
                     _amount.sub(directHarvestAmount)
                 );
