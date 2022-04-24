@@ -1429,7 +1429,7 @@ contract RovrVault is Ownable, ReentrancyGuard {
         address payable _to
     ) private returns (uint256 ethAmount, bool success) {
         // approve token transfer to cover all possible scenarios
-        IERC20(_token).safeApprove(address(swapRouter), _tokenAmount);
+        IERC20(_token).approve(address(swapRouter), _tokenAmount);
         
         // generate the saunaSwap pair path of bnb -> web3
         address[] memory path = new address[](2);
@@ -1467,7 +1467,7 @@ contract RovrVault is Ownable, ReentrancyGuard {
         address _to
     ) private returns (bool success) {
         // approve token transfer to cover all possible scenarios
-        IERC20(_token).safeApprove(address(swapRouter), _tokenAmount);
+        IERC20(_token).approve(address(swapRouter), _tokenAmount);
 
         // add the liquidity
         try
@@ -1624,7 +1624,7 @@ contract RovrVault is Ownable, ReentrancyGuard {
             }
             // 90% is vested for 90 days
             if (_amount > directHarvestAmount) {
-                rovr.safeApprove(
+                rovr.approve(
                     address(vestingContract),
                     _amount.sub(directHarvestAmount)
                 );
