@@ -1651,9 +1651,6 @@ contract RovrFarm is Ownable, ReentrancyGuard {
                 user.nextHarvestUntil = block.timestamp.add(
                     pool.harvestInterval
                 );
-
-                // send rewards
-                safeRovrTransfer(_msgSender(), totalRewards);
             }
         } else if (pending > 0) {
             user.rewardLockedUp = user.rewardLockedUp.add(pending);
